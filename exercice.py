@@ -5,22 +5,40 @@
 import math
 import copy
 import itertools
-
+from matplotlib.colors import cnames
 
 def get_even_keys(dictionary):
-	return {}
+	list = [integer for integer in dictionary if integer % 2 == 0]
+	return list
 
 def join_dictionaries(dictionaries):
-	return {}
+	dict_res = dictionaries[0]
+
+	for i in range(1,len(dictionaries)):
+		dict_res.update(dictionaries[i])
+	return dict_res
 
 def dictionary_from_lists(keys, values):
-	return {}
+	dictionary = dict.fromkeys(keys)
+	for key, value in zip(keys, values):
+		dictionary[key] = value
+
+	return dictionary
 
 def get_greatest_values(dictionnary, num_values):
-	return []
+	maxValues = []
+	maxdict = max(dictionnary)
+	maxValues.append(maxdict)
+	maxCurrent = 0
+	return sorted(dictionnary, key=dictionnary.__getitem__, reverse=True)[0:num_values]
 
 def get_sum_values_from_key(dictionnaries, key):
-	return 0
+	sum = 0
+
+	for dict in dictionnaries:
+		if key in dict:
+			sum += dict[key]
+	return sum
 
 
 if __name__ == "__main__":
